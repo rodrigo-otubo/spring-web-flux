@@ -1,0 +1,5 @@
+create schema anime;
+
+create table anime.anime;
+
+insert into anime.anime(id, name) values (1, 'Naruto');
