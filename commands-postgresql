@@ -1,5 +1,9 @@
 create schema anime;
 
-create table anime.anime;
+create table anime.anime(
+    id integer generated always as identity,
+    name varchar
+);
+
 
 insert into anime.anime(id, name) values (1, 'Naruto');

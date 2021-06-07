@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -24,18 +24,14 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="5385d180-a887-4ac2-9074-4127945a5a4a">
-        <schema name="anime" object-types="table, view, sequence, function, constraint, index, column, dataset trigger" />
-        <schema name="information_schema" object-types="table, view, function" />
-        <schema name="pg_catalog" object-types="table, view, function" />
-        <schema name="public" object-types="table, view, function" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="5385d180-a887-4ac2-9074-4127945a5a4a">
-      <console name="Connection" type="STANDARD" schema="information_schema" session="Main"><![CDATA[create schema anime]]></console>
+      <console name="Connection" type="STANDARD" schema="information_schema" session="Main"><![CDATA[create table anime.anime(
+    id integer generated always as identity, 
+    name varchar
+);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
