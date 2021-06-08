@@ -24,14 +24,19 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="5385d180-a887-4ac2-9074-4127945a5a4a">
+        <schema name="anime" object-types="table, view, sequence, function, constraint, index, column, dataset trigger" />
+        <schema name="information_schema" object-types="table, view" />
+        <schema name="pg_catalog" object-types="table, view" />
+        <schema name="public" object-types="table, view" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="5385d180-a887-4ac2-9074-4127945a5a4a">
-      <console name="Connection" type="STANDARD" schema="information_schema" session="Main"><![CDATA[create table anime.anime(
-    id integer generated always as identity, 
-    name varchar
-);]]></console>
+      <console name="Connection" type="STANDARD" schema="information_schema" session="Main"><![CDATA[insert into anime.devdojo_user(name, username, password, authorities)
+values ('Kaike Ventura', 'kaike', '{bcrypt}$2a$10$mL.P0z371M16dCFYE3DL5.nWtkg.KjLopPzEoSJUbi7TV0iNkl8Ne', 'ROLE_USER');]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

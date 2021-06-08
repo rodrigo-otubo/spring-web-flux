@@ -1,15 +1,13 @@
 package academy.devdojo.webflux.config;
 
+import academy.devdojo.webflux.service.DevDojoUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.ReactiveAuthenticationManager;
+import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @EnableWebFluxSecurity
@@ -23,7 +21,14 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.POST, "/animes/**").hasRole("ADMIN")
+                .pathMatchers(HttpMethod.PUT, "/animes/**").hasRole("ADMIN")
+                .pathMatchers(HttpMethod.DELETE, "/animes/**").hasRole("ADMIN")
                 .pathMatchers(HttpMethod.GET, "/animes/**").hasRole("USER")
+                .pathMatchers("/swagger-ui.html",
+                "/swagger-ui/**",
+                "/v3/api-docs/**",
+                "/webjars/**")
+                .permitAll()
                 .anyExchange().authenticated()
                 .and()
                 .formLogin()
@@ -33,7 +38,7 @@ public class SecurityConfig {
                 .build();
         //@formatter:on
     }
-
+    /* User without DB
     @Bean
     public MapReactiveUserDetailsService userDetailsService() {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -48,5 +53,10 @@ public class SecurityConfig {
                 .build();
 
         return new MapReactiveUserDetailsService(user, admin);
+    }
+    */
+    @Bean
+    ReactiveAuthenticationManager authenticationManager(DevDojoUserDetailsService devDojoUserDetailsService) {
+        return new UserDetailsRepositoryReactiveAuthenticationManager(devDojoUserDetailsService);
     }
 }

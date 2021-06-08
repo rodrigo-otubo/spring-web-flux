@@ -1,3 +1,5 @@
+http://localhost:8080/swagger-ui.html
+
 create schema anime;
 
 create table anime.anime(
@@ -7,3 +9,17 @@ create table anime.anime(
 
 
 insert into anime.anime(id, name) values (1, 'Naruto');
+
+create table anime.devdojo_user(
+    id integer generated always as identity,
+    name varchar not null,
+    username varchar not null,
+    password varchar,
+    authorities varchar not null
+);
+
+insert into anime.devdojo_user(name, username, password, authorities)
+values ('Rodrigo Otubo', 'rodrigo', '{bcrypt}$2a$10$mL.P0z371M16dCFYE3DL5.nWtkg.KjLopPzEoSJUbi7TV0iNkl8Ne', 'ROLE_ADMIN,ROLE_USER');
+
+insert into anime.devdojo_user(name, username, password, authorities)
+values ('Kaike Ventura', 'kaike', '{bcrypt}$2a$10$mL.P0z371M16dCFYE3DL5.nWtkg.KjLopPzEoSJUbi7TV0iNkl8Ne', 'ROLE_USER');
